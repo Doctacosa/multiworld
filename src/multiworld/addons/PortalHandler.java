@@ -170,38 +170,40 @@ public abstract class PortalHandler implements Listener, MultiworldAddon, Settin
 			{
 				this.logger.fine("[PortalHandler] got PortalType.END.");
 				InternalWorld from = this.data.getWorldManager().getInternalWorld(event.getFrom().getWorld().getName(), true);
-				String toWorldString = from.getEndPortalWorld();
-				if (!toWorldString.isEmpty())
-				{
-					World toWorld = this.data.getWorldManager().getWorld(toWorldString);
-					if (toWorld != null)
+				if (from != null) {
+					String toWorldString = from.getEndPortalWorld();
+					if (!toWorldString.isEmpty())
 					{
-						World.Environment toDim = toWorld.getEnvironment(), fromDim = event.getFrom().getWorld().getEnvironment();
-						if (toDim == World.Environment.THE_END)
+						World toWorld = this.data.getWorldManager().getWorld(toWorldString);
+						if (toWorld != null)
 						{
-							Location loc = new Location(toWorld, 100, 54, 0);
-							event.setTo(loc);
-
-						}
-						else
-						{
-							Entity ent = event.getEntity();
-							Location loc = null;
-							if (ent instanceof Player)
+							World.Environment toDim = toWorld.getEnvironment(), fromDim = event.getFrom().getWorld().getEnvironment();
+							if (toDim == World.Environment.THE_END)
 							{
-								Player player = (Player) ent;
-								loc = player.getBedSpawnLocation();
+								Location loc = new Location(toWorld, 100, 54, 0);
+								event.setTo(loc);
+	
 							}
-							if (loc == null || (!loc.getWorld().equals(toWorld)))
+							else
 							{
-								loc = toWorld.getSpawnLocation();
+								Entity ent = event.getEntity();
+								Location loc = null;
+								if (ent instanceof Player)
+								{
+									Player player = (Player) ent;
+									loc = player.getBedSpawnLocation();
+								}
+								if (loc == null || (!loc.getWorld().equals(toWorld)))
+								{
+									loc = toWorld.getSpawnLocation();
+								}
+								event.setTo(loc);
+	
 							}
-							event.setTo(loc);
-
 						}
 					}
+					this.logger.fine("[PortalHandler] [PortalType.END] used for entity " + event.getEntityType().toString().toLowerCase() + " to get to world " + toWorldString);
 				}
-				this.logger.fine("[PortalHandler] [PortalType.END] used for entity " + event.getEntityType().toString().toLowerCase() + " to get to world " + toWorldString);
 			}
 		}
 		else
