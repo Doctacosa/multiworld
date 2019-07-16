@@ -5,7 +5,8 @@
 package multiworld.worldgen;
 
 import java.util.List;
-import multiworld.worldgen.populators.Populators;
+import java.util.Random;
+
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 
@@ -19,8 +20,11 @@ public abstract class MultiWorldChunkGen extends org.bukkit.generator.ChunkGener
 	public List<BlockPopulator> getDefaultPopulators(World world)
 	{
 		List<BlockPopulator> list = super.getDefaultPopulators(world);
-		list.add(Populators.MYCELIUM.get());
-		list.add(Populators.SNOW.get());
 		return list;
+	}
+
+	public short[][] generateExtBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
