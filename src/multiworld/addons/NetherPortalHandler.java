@@ -34,12 +34,11 @@ public class NetherPortalHandler extends PortalHandler
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerPortal(PlayerPortalEvent event)
 	{
-		final EntityPortalEvent evt = new EntityPortalEvent(event.getPlayer(),event.getFrom(),event.getTo(),event.getPortalTravelAgent());
+		final EntityPortalEvent evt = new EntityPortalEvent(event.getPlayer(),event.getFrom(),event.getTo());
 		evt.setCancelled(event.isCancelled());
 		this.onPlayerPortal(evt);
 		event.setCancelled(evt.isCancelled());
 		event.setTo(evt.getTo());
 		event.setFrom(evt.getFrom());
-		event.setPortalTravelAgent(evt.getPortalTravelAgent());
 	}
 }
