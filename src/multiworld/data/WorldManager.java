@@ -52,7 +52,10 @@ public class WorldManager implements WorldUtils
 	@Override
 	public World getWorld(String name)
 	{
-		return this.getWorldMeta(name, true).getBukkitWorld();
+		WorldContainer c = this.getWorldMeta(name, true);
+		if (c != null)
+			return c.getBukkitWorld();
+		return null;
 	}
 
 	@Override
