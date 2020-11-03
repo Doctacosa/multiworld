@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>multiworld</groupId>
   <artifactId>multiworld</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>6.0.0-SNAPSHOT</version>
   <name>multiworld</name>
   <description>Create and access multiple worlds on a single server</description>
   <properties>
